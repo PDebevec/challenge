@@ -1,0 +1,7 @@
+<div *ngFor="let product of produts">
+    <div>
+        <img src='{{ product.primaryMediaUrl }}' alt="" style="max-width: 200px; max-height: 200px;">
+        <a href="product/{{ product.cardTitle.at(-1) }}">Pogled</a>
+        <h2>{{ product.listOfPlans[0].price.amount }}</h2>
+    </div>
+</div>

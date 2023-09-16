@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductlistComponent } from './productlist/productlist.component';
+import { ProductlistComponent } from './product-list/productlist.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductFilterComponent } from './product-filter/product-filter.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
-    ProductlistComponent
+    ProductlistComponent,
+    ProductDetailsComponent,
+    ProductFilterComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -13,7 +19,8 @@ import { ProductlistComponent } from './productlist/productlist.component';
   ],
   providers: [],
   bootstrap: [
-    ProductlistComponent
+    ProductlistComponent,
+    ProductFilterComponent
   ]
 })
 
