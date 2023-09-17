@@ -7,6 +7,7 @@ import { CartComponent } from './cart/cart.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider'
+import { AppRoutingModule } from './app.routing.module'
 
 @NgModule({
   declarations: [
@@ -19,11 +20,13 @@ import { MatSliderModule } from '@angular/material/slider'
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatSliderModule
+    MatSliderModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [
     ProductlistComponent,
+    ProductDetailsComponent
   ]
 })
 
