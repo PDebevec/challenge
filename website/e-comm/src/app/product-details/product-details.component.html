@@ -1,6 +1,6 @@
 <div>
     <h1>{{ product?.cardTitle }}</h1>
-    <img src='{{ product?.primaryMediaUrl }}' alt="" style="max-width: 500px; max-height: 500px;">
+    <img src='{{ product?.primaryMediaUrl }}' style="max-width: 500px; max-height: 500px;">
     <p>{{ product?.cardDescription }}</p>
-    <button>Add to cart</button>
+    <button (click)="addToCart()">Add to cart</button>
 </div>
