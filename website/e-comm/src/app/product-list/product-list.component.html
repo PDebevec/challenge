@@ -1,0 +1,37 @@
+<br>
+<div>
+    <ul>
+      <li class="filter-li">
+        <div>
+            <input type="text" [(ngModel)]="searchText" placeholder="Search products">
+          </div>
+      </li>
+      <li class="filter-li">
+        <div>
+          <label>Price Range: </label>
+          <mat-slider min="0" max="100" discrete>
+            <input [(ngModel)]="minPrice" value="{{minPrice}}" matSliderStartThumb>
+            <input [(ngModel)]="maxPrice" value="{{maxPrice}}" matSliderEndThumb>
+          </mat-slider>
+        </div>
+      </li>
+      <li class="filter-li">
+        <div>
+          <label>Sort by: </label>
+          <select [(ngModel)]="sortOrder">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </div>
+      </li>
+    </ul>
+        <button (click)="applyFiltersAndSort()">Apply</button>
+  </div>
+  
+  <div *ngFor="let product of filteredProducts">
+      <div>
+          <img src='{{ product.primaryMediaUrl }}' alt="" style="max-width: 200px; max-height: 200px;">
+          <a href="product/{{ product.cardTitle.at(-1) }}">Pogled</a>
+          <h2>{{ product.listOfPlans[0].price.amount }}</h2>
+      </div>
+  </div>

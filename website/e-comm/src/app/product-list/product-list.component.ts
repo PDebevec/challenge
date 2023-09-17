@@ -1,11 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product.interface'
 import { ProductsService } from '../products.service'
+import { MatSliderModule } from '@angular/material/slider'
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'
 
 @Component({
+  standalone: true,
+  imports: [
+    MatSliderModule,
+    CommonModule,
+    FormsModule,
+  ],
   selector: 'app-product-list',
-  templateUrl: './productlist.component.html',
-  styleUrls: ['./productlist.component.css']
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css']
 })
 
 export class ProductlistComponent implements OnInit{
@@ -31,7 +40,6 @@ export class ProductlistComponent implements OnInit{
       return meetsSearchCriteria && meetsPriceRangeCriteria;
     });
 
-    // Sort the filtered list based on sortOrder
     if (this.sortOrder === 'asc') {
       filteredList = filteredList.sort((a, b) => a.cardTitle.localeCompare(b.cardTitle));
     } else if (this.sortOrder === 'desc') {
