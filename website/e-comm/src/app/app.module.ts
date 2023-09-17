@@ -3,24 +3,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductlistComponent } from './product-list/productlist.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import { ProductFilterComponent } from './product-filter/product-filter.component';
 import { CartComponent } from './cart/cart.component';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider'
 
 @NgModule({
   declarations: [
     ProductlistComponent,
     ProductDetailsComponent,
-    ProductFilterComponent,
     CartComponent,
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [
     ProductlistComponent,
-    ProductFilterComponent
   ]
 })
 
