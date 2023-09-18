@@ -1,3 +1,19 @@
+<h1>Cart</h1>
+<hr><br>
 <div *ngFor="let product of products">
-    <h1>{{ product.cardTitle }}</h1>
+    <ul>
+        <li class="cart-li">
+            <img src='{{ product.primaryMediaUrl }}' style="max-width: 100px; max-height: 100px;">
+        </li>
+        <li class="cart-li">
+            <h1>{{ product.cardTitle }}</h1>
+        </li>
+        <li class="cart-li">
+            Quantity: <input type="number" value="" (change)="qunatityChange(product.cardTitle)">
+        </li>
+        <li class="cart-li">
+            <button (click)="removeProduct(product.cardTitle)">Remove</button>
+        </li>
+    </ul>
+    <hr><br>
 </div>
