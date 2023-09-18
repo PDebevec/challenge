@@ -19,7 +19,8 @@ import { FormsModule } from '@angular/forms';
 export class ProductDetailsComponent{
   products: Product[] = [];
   product: Product | null = null;
-  
+  inCart: boolean | false = false;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -27,12 +28,14 @@ export class ProductDetailsComponent{
   ) {}
 
   addToCart() : void{
-    if(localStorage.getItem('cart')){
-      var cart = JSON.parse(localStorage['cart'])
-      //dodamo notr v cart
-      //ne vem glede ya disable button
+    if(!localStorage.getItem('cart')){
+      localStorage.setItem('cart', JSON.stringify([{ title: this.product?.cardTitle, quantity: 1 }]))
+      this.router.navigate(['/'])
     }else{
-      localStorage.setItem('cart', JSON.stringify([{title: this.product?.cardTitle, quantity: 1}]))
+      var temp = JSON.parse(localStorage['cart'])
+      temp.push({ title: this.product?.cardTitle, quantity: 1 })
+      localStorage.setItem('cart', JSON.stringify(temp))
+      this.router.navigate(['/'])
     }
   }
 
@@ -43,14 +46,24 @@ export class ProductDetailsComponent{
       this.productsService.getProducts().subscribe((products) => {
         this.products = products;
         var val = false;
+
         this.products.forEach(element => {
           if (element.cardTitle.at(-1) == productId){
             val = !val;
             this.product = element;
           }
         });
+
+        
         if(val){
           const id = +productId;
+          if(localStorage.getItem('cart')){
+            JSON.parse(localStorage['cart']).forEach((element: any ) => {
+              if(element.title == this.product?.cardTitle){
+                this.inCart = true;
+              }
+            });
+          }
         }else{
           this.router.navigate(['/'])
         }

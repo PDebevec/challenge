@@ -2,5 +2,5 @@
     <h1>{{ product?.cardTitle }}</h1>
     <img src='{{ product?.primaryMediaUrl }}' style="max-width: 500px; max-height: 500px;">
     <p>{{ product?.cardDescription }}</p>
-    <button (click)="addToCart()">Add to cart</button>
+    <button (click)="addToCart()" [disabled]="inCart">Add to cart</button>
 </div>
