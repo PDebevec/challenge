@@ -3,17 +3,23 @@
 <div *ngFor="let product of products">
     <ul>
         <li class="cart-li">
-            <img src='{{ product.primaryMediaUrl }}' style="max-width: 100px; max-height: 100px;">
+            <img src='{{ product[0].primaryMediaUrl }}' style="max-width: 100px; max-height: 100px;">
         </li>
         <li class="cart-li">
-            <h1>{{ product.cardTitle }}</h1>
+            <h1>{{ product[0].cardTitle }}</h1>
         </li>
         <li class="cart-li">
-            Quantity: <input type="number" value="" (change)="qunatityChange(product.cardTitle)">
+            Quantity: <input type="number" [(ngModel)]="product[1].quantity" value="{{ product[1].quantity}}" max="{{ product[0].maxQuantityPerUser }}" min="1" (change)="qunatityChange(product)">
         </li>
         <li class="cart-li">
-            <button (click)="removeProduct(product.cardTitle)">Remove</button>
+            <button (click)="removeProduct(product[0].cardTitle)">Remove</button>
         </li>
     </ul>
     <hr><br>
+</div>
+<div>
+    <p>Cart total: {{ cartTotal }} EUR</p>
+    <p>Shipping: {{ products.length * 7.25 }} EUR</p>
+    <p>Total: {{ cartTotal + products.length * 7.25 }} EUR</p>
+    <button>Go to checkout</button>
 </div>
