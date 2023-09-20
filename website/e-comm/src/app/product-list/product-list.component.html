@@ -1,40 +1,36 @@
-<br>
-<div>
-    <ul>
-      <li class="filter-li">
-        <div>
-            <input type="text" [(ngModel)]="searchText" placeholder="Search products">
-          </div>
-      </li>
-      <li class="filter-li">
-        <div>
-          <label>Price Range: </label>
-          <mat-slider min="0" max="100" discrete>
-            <input [(ngModel)]="minPrice" value="{{minPrice}}" matSliderStartThumb>
-            <input [(ngModel)]="maxPrice" value="{{maxPrice}}" matSliderEndThumb>
-          </mat-slider>
-        </div>
-      </li>
-      <li class="filter-li">
-        <div>
-          <label>Sort by: </label>
-          <select [(ngModel)]="sortOrder">
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
-          </select>
-        </div>
-      </li>
-      <li class="filter-li">
-        <button onclick="location.href = 'cart/'">Cart</button>
-      </li>
-    </ul>
-        <button (click)="applyFiltersAndSort()">Apply</button>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="container">
+    <p>Price slider: </p>
+    <mat-slider min="0" max="100" discrete>
+      <input [(ngModel)]="minPrice" value="{{minPrice}}" matSliderStartThumb>
+      <input [(ngModel)]="maxPrice" value="{{maxPrice}}" matSliderEndThumb>
+    </mat-slider>
   </div>
-  
-  <div *ngFor="let product of filteredProducts">
-      <div>
-          <img src='{{ product.primaryMediaUrl }}' alt="" style="max-width: 200px; max-height: 200px;">
-          <a href="product/{{ product.cardTitle.at(-1) }}">Pogled</a>
-          <h2>{{ product.listOfPlans[0].price.amount }}</h2>
+  <div class="container">
+    <select [(ngModel)]="sortOrder" class="form-select">
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
+    </select>
+  </div>
+  <div class="container">
+    <input class="form-control me-2" type="text" [(ngModel)]="searchText" placeholder="Search products">
+    <button (click)="applyFiltersAndSort()" class="btn btn-outline-secondary">Apply filters</button>
+  </div>
+  <div class="container">
+    <button class="btn btn btn-outline-secondary" onclick="location.href = 'cart/'">Cart</button>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div *ngFor="let product of filteredProducts" class="card col-md-4" style="width: 18rem; margin: 1rem;">
+      <img class="card-img-top" src='{{ product.primaryMediaUrl }}' alt="" style="max-width: 200px; max-height: 200px;">
+      <div class="card-body">
+        <h2 class="card-title">{{ product.cardTitle }}</h2>
+        <h3>{{ (product.listOfPlans[0].price.amount/100).toFixed(2) +" "+ product.listOfPlans[0].price.currency }}</h3>
+        <p class="text-truncate card-text">{{ product.cardDescription }}</p>
+        <a href="product/{{ product.cardTitle.at(-1) }}">Details</a>
       </div>
+    </div>
   </div>
+</div>

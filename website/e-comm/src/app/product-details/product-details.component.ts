@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
 
 export class ProductDetailsComponent{
   products: Product[] = [];
-  product: Product | null = null;
+  product: any;
   inCart: boolean | false = false;
 
   constructor(
@@ -48,9 +48,10 @@ export class ProductDetailsComponent{
         var val = false;
 
         this.products.forEach(element => {
+          //console.log(element.cardTitle.at(-1), productId)
           if (element.cardTitle.at(-1) == productId){
-            val = !val;
-            this.product = element;
+            val = !val
+            this.product = element
           }
         });
 

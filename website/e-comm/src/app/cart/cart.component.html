@@ -1,25 +1,37 @@
-<h1>Cart</h1>
-<hr><br>
-<div *ngFor="let product of products">
-    <ul>
-        <li class="cart-li">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Home</a>
+    </div>
+</nav>
+
+<div class="container mt-5 mb-5">
+    <div *ngFor="let product of products" class="row border">
+        <div class="col-md-1">
             <img src='{{ product[0].primaryMediaUrl }}' style="max-width: 100px; max-height: 100px;">
-        </li>
-        <li class="cart-li">
-            <h1>{{ product[0].cardTitle }}</h1>
-        </li>
-        <li class="cart-li">
+        </div>
+        <div class="col-md-3 my-auto">
+            <h3>{{ product[0].cardTitle }}</h3>
+        </div>
+        <div class="col-md-3 my-auto">
             Quantity: <input type="number" [(ngModel)]="product[1].quantity" value="{{ product[1].quantity}}" max="{{ product[0].maxQuantityPerUser }}" min="1" (change)="qunatityChange(product)">
-        </li>
-        <li class="cart-li">
-            <button (click)="removeProduct(product[0].cardTitle)">Remove</button>
-        </li>
-    </ul>
-    <hr><br>
+        </div>
+        <div class="col-md-3 my-auto">
+            <button class="btn btn-outline-danger" (click)="removeProduct(product[0].cardTitle)">Remove</button>
+        </div>
+        <div class="col-md-2 my-auto">
+            <h6>{{ (product[0].listOfPlans[0].price.amount/100 * product[1].quantity).toFixed(2) +" "+ product[0].listOfPlans[0].price.currency }}</h6>
+        </div>
+    </div>
 </div>
-<div>
-    <p>Cart total: {{ cartTotal }} EUR</p>
-    <p>Shipping: {{ products.length * 7.25 }} EUR</p>
-    <p>Total: {{ cartTotal + products.length * 7.25 }} EUR</p>
-    <button>Go to checkout</button>
+
+<div class="container">
+    <div class="row justify-content-end">
+        <div class="col-md-2">
+            <h6>Cart total: {{ cartTotal.toFixed(2) }} EUR</h6>
+            <h6>Shipping: {{ (products.length * 7.25).toFixed(2) }} EUR</h6>
+            <hr>
+            <h5>Total: {{ (cartTotal + products.length * 7.25).toFixed(2) }} EUR</h5>
+            <button class="btn btn-outline-success">Go to checkout</button>
+        </div>
+    </div>
 </div>

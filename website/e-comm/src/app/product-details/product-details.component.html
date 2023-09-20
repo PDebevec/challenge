@@ -1,6 +1,21 @@
-<div>
-    <h1>{{ product?.cardTitle }}</h1>
-    <img src='{{ product?.primaryMediaUrl }}' style="max-width: 500px; max-height: 500px;">
-    <p>{{ product?.cardDescription }}</p>
-    <button (click)="addToCart()" [disabled]="inCart">Add to cart</button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Home</a>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ product.primaryMediaUrl }}" class="img-fluid border rounded">
+        </div>
+        <div class="col-md-6">
+            <h2>{{ product.cardTitle }}</h2>
+            <p>{{ product.cardDescription }}</p>
+            <div>
+                <h3>{{ (product.listOfPlans[0].price.amount/100).toFixed(2) +" "+ product.listOfPlans[0].price.currency }}</h3>
+                <button class="btn btn-outline-secondary" (click)="addToCart()" [disabled]="inCart">Add to cart</button>
+            </div>
+        </div>
+    </div>
 </div>
