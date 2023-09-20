@@ -23,9 +23,9 @@ export class CartComponent {
 
   qunatityChange(product: any): void{
     let index = this.cartitems.findIndex((element: any) => {
-      return element.title == product[0].cardTitle
+      return element.title == product[1].title
     })
-    
+
     this.products[index][1].quantity = product[1].quantity
 
     localStorage.setItem('cart', JSON.stringify(this.cartitems))
@@ -41,21 +41,20 @@ export class CartComponent {
       this.cartitems.findIndex((element: any) => {
         return element.title == productId
     }), 1)
-    localStorage.setItem('cart', JSON.stringify(this.cartitems))
+    localStorage.setItem('cart', JSON.stringify(this.cartitems.sort()))
     window.location.reload()
   }
 
   ngOnInit(): void{
     this.cartitems = JSON.parse(localStorage['cart'])
     this.productsService.getProducts().subscribe((products) => {
-      products.forEach(element => {
-        this.cartitems.forEach((item: any) => {
-          if(element.cardTitle == item.title){
-            this.products.unshift([element, item])
-            this.cartTotal += element.listOfPlans[0].price.amount * item.quantity / 100;
+      this.cartitems.forEach((item: any) => {
+        products.forEach((element: any) => {
+          if(item.title == element.cardTitle){
+            this.products.push([element, item])
           }
         });
-      });
+      })
     });
   }
 }

@@ -29,7 +29,7 @@
         <h2 class="card-title">{{ product.cardTitle }}</h2>
         <h3>{{ (product.listOfPlans[0].price.amount/100).toFixed(2) +" "+ product.listOfPlans[0].price.currency }}</h3>
         <p class="text-truncate card-text">{{ product.cardDescription }}</p>
-        <a href="product/{{ product.cardTitle.at(-1) }}">Details</a>
+        <a href="product/{{ product.cardTitle }}">Details</a>
       </div>
     </div>
   </div>

@@ -29,11 +29,11 @@ export class ProductDetailsComponent{
 
   addToCart() : void{
     if(!localStorage.getItem('cart')){
-      localStorage.setItem('cart', JSON.stringify([{ title: this.product?.cardTitle, quantity: 1 }]))
+      localStorage.setItem('cart', JSON.stringify([{ title: this.product.cardTitle, quantity: 1 }]))
       this.router.navigate(['/'])
     }else{
       var temp = JSON.parse(localStorage['cart'])
-      temp.push({ title: this.product?.cardTitle, quantity: 1 })
+      temp.push({ title: this.product.cardTitle, quantity: 1 })
       localStorage.setItem('cart', JSON.stringify(temp))
       this.router.navigate(['/'])
     }
@@ -49,7 +49,7 @@ export class ProductDetailsComponent{
 
         this.products.forEach(element => {
           //console.log(element.cardTitle.at(-1), productId)
-          if (element.cardTitle.at(-1) == productId){
+          if (element.cardTitle == productId){
             val = !val
             this.product = element
           }
