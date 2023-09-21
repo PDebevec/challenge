@@ -3,6 +3,7 @@ import { ProductsService } from '../products.service'
 import { Product } from '../product.interface'
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Title } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-cart',
@@ -19,7 +20,12 @@ export class CartComponent {
   products: any[] = [];
   cartTotal: number = 0;
 
-  constructor(private productsService: ProductsService){}
+  constructor(
+    private productsService: ProductsService,
+    private titleService: Title
+  ){
+    this.titleService.setTitle('Cart')
+  }
 
   qunatityChange(product: any): void{
     let index = this.cartitems.findIndex((element: any) => {

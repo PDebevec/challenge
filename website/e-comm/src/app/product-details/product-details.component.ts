@@ -4,6 +4,7 @@ import { ProductsService } from '../products.service'
 import { Product } from '../product.interface'
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Title } from '@angular/platform-browser'
 
 @Component({
   standalone: true,
@@ -24,8 +25,11 @@ export class ProductDetailsComponent{
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private productsService: ProductsService
-  ) {}
+    private productsService: ProductsService,
+    private titleService: Title
+  ) {
+    this.titleService.setTitle('Porduct details')
+  }
 
   addToCart() : void{
     if(!localStorage.getItem('cart')){
@@ -48,14 +52,12 @@ export class ProductDetailsComponent{
         var val = false;
 
         this.products.forEach(element => {
-          //console.log(element.cardTitle.at(-1), productId)
           if (element.cardTitle == productId){
             val = !val
             this.product = element
           }
         });
 
-        
         if(val){
           const id = +productId;
           if(localStorage.getItem('cart')){

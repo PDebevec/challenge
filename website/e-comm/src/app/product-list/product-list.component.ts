@@ -24,10 +24,11 @@ export class ProductlistComponent implements OnInit{
   minPrice: number | null = null;
   maxPrice: number | null = null;
   sortOrder = 'asc';
+  cartItems: any[] = [];
 
   constructor(private productsService: ProductsService) {}
 
-  applyFiltersAndSort(): void {
+  applyFilters(): void {
     let filteredList = this.products.filter((product) => {
       const meetsSearchCriteria =
         product.cardTitle.toLowerCase().includes(this.searchText.toLowerCase()) ||
@@ -54,7 +55,7 @@ export class ProductlistComponent implements OnInit{
       this.products = products;
       this.minPrice = 0
       this.maxPrice = 100
-      this.applyFiltersAndSort();
+      this.applyFilters();
     });
   }
 }
